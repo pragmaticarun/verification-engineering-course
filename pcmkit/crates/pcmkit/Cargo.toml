@@ -1,0 +1,12 @@
+[package]
+name = "pcmkit"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Small WAV/PCM library used as the running example in the verification course."
+
+[dependencies]
+
+[lints]
+workspace = true

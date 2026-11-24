@@ -1,0 +1,52 @@
+{
+  "locked": [
+    ".claude/settings.json",
+    ".claude/hooks/",
+    ".claude/skills/",
+    ".verify/",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "REVIEW.md",
+    ".cursor/rules/",
+    ".github/workflows/",
+    ".github/CODEOWNERS"
+  ],
+  "test_paths": [
+    "**/tests/**",
+    "**/*_test.rs",
+    "**/test_*.py",
+    "**/*_test.py"
+  ],
+  "checks": [
+    {
+      "id": "pcmkit-unit",
+      "when": ["pcmkit/**/*.rs"],
+      "check": "cargo test --manifest-path pcmkit/Cargo.toml --offline --workspace",
+      "why": "Rust unit and CLI tests for the running example."
+    },
+    {
+      "id": "pcmkit-oracle",
+      "when": ["pcmkit/**/*.rs", "pcmkit/oracle/**"],
+      "check": "python3 pcmkit/oracle/test_oracle.py",
+      "why": "The CLI must match the Python reference on the same samples."
+    },
+    {
+      "id": "pcmkit-cpp",
+      "when": ["pcmkit/crates/pcmkit-ffi/**", "pcmkit/cpp/**", "pcmkit/include/**"],
+      "check": "bash pcmkit/cpp/run_consumer.sh",
+      "why": "The C ABI is what the C++ consumer actually calls."
+    },
+    {
+      "id": "harness-selftest",
+      "when": ["harness/**", "tests/**", "scenarios/**", "labs/**", "tools/**", "briefs/**"],
+      "check": "python3 -m unittest discover -s tests -v",
+      "why": "Recorded hook events and the cheat corpus must keep failing closed."
+    },
+    {
+      "id": "gain-normalize-accept",
+      "when": ["pcmkit/**", "briefs/gain-normalize/**"],
+      "check": "python3 briefs/gain-normalize/accept.py",
+      "why": "The brief for peak-normalize is done only when its acceptance command exits 0."
+    }
+  ]
+}

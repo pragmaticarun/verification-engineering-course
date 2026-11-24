@@ -1,0 +1,13 @@
+{
+  "session_id": "replace-me",
+  "transcript_path": "/tmp/verify-course-transcript.jsonl",
+  "cwd": ".",
+  "permission_mode": "default",
+  "hook_event_name": "PreToolUse",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "git commit -m \"ship the clamp\"",
+    "description": "Commit the change"
+  },
+  "tool_use_id": "toolu_fixture_commit"
+}

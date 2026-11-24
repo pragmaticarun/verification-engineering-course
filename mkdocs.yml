@@ -1,0 +1,78 @@
+site_name: Verification Engineering for AI Coding Agents
+site_description: A hands-on course in proving what a coding agent claims to have done.
+site_author: Arunkumar Maniam Rajan
+site_url: https://pragmaticarun.github.io/verification-engineering-course/
+repo_url: https://github.com/pragmaticarun/verification-engineering-course
+repo_name: pragmaticarun/verification-engineering-course
+edit_uri: edit/main/docs/
+copyright: Prose is CC BY 4.0. Code is MIT.
+
+strict: true
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+    - toc.follow
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.snippets:
+      base_path: ["."]
+      check_paths: true
+  - tables
+  - attr_list
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Syllabus: syllabus.md
+  - Setup: setup.md
+  - Article map: mapping.md
+  - Claim check: claims.md
+  - Glossary: glossary.md
+  - References: references.md
+  - Modules:
+      - "1. Why verification": m01-why-verification/index.md
+      - "1. Lab": m01-why-verification/lab.md
+      - "1. Quiz": m01-why-verification/quiz.md
+      - "1. Project": m01-why-verification/project.md
+      - "2. Defining done": m02-defining-done/index.md
+      - "2. Lab": m02-defining-done/lab.md
+      - "2. Quiz": m02-defining-done/quiz.md
+      - "2. Project": m02-defining-done/project.md
+      - "3. Instructions and permissions": m03-instructions-permissions/index.md
+      - "3. Lab": m03-instructions-permissions/lab.md
+      - "3. Quiz": m03-instructions-permissions/quiz.md
+      - "3. Project": m03-instructions-permissions/project.md
+      - "4. Hooks and gates": m04-hooks-gates/index.md
+      - "4. Lab": m04-hooks-gates/lab.md
+      - "4. Quiz": m04-hooks-gates/quiz.md
+      - "4. Project": m04-hooks-gates/project.md
+      - "5. Fast layers (coming soon)": m05-fast-layers/index.md
+      - "6. Tests an agent can't fool (coming soon)": m06-cant-fool-tests/index.md
+      - "7. Native code and light formal methods (coming soon)": m07-native-formal/index.md
+      - "8. Run it and prove it (coming soon)": m08-run-and-prove/index.md
+      - "9. Reward hacking and locks (coming soon)": m09-reward-hacking/index.md
+      - "10. Agents verifying agents (coming soon)": m10-agents-verifying-agents/index.md
+      - "11. Orchestration (coming soon)": m11-orchestration/index.md
+      - "12. Metrics and the ratchet (coming soon)": m12-metrics-ratchet/index.md
+      - "Capstone (coming soon)": capstone/index.md

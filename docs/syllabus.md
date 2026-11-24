@@ -1,0 +1,23 @@
+# Syllabus
+
+Twelve modules, about four hours each, plus a capstone. Read for half an hour, then spend the rest in the lab and the project. At two modules a week this is six weeks and then the capstone. Go faster if the tests are already how you think.
+
+The running example is `pcmkit`: a Rust WAV/PCM library, the `pcmx` CLI, a C ABI with a C++ consumer, and a Python reference. Each module adds a check or a rule to that tree. Claude Code is the tool with the richest hooks. Every module says what Codex (`AGENTS.md`) and Cursor (project rules) can and cannot see.
+
+| Module | You come out able to | On `pcmkit` | Status |
+| --- | --- | --- | --- |
+| [1. Why verification](m01-why-verification/index.md) | Tell a claim from a result, and compute reads per ship | Replay ten mocked reviews and compare ticks with exit codes | Ready |
+| [2. Defining done](m02-defining-done/index.md) | Write a brief an agent can fail | Brief and acceptance command for `pcmx gain --normalize` | Ready |
+| [3. Instructions and permissions](m03-instructions-permissions/index.md) | Keep one agreement across Claude, Codex, and Cursor | Deny rules for the harness directories | Ready |
+| [4. Hooks and gates](m04-hooks-gates/index.md) | Test a Stop hook and a commit hook on recorded events | Corrected gates, and the ten holes closed in CI | Ready |
+| [5. Fast layers](m05-fast-layers/index.md) | Stack formatters, linters, unit tests, and golden files so they finish in under a minute | `verify fast` for WAV, PNG, and the C ABI | Coming soon |
+| [6. Tests an agent can't fool](m06-cant-fool-tests/index.md) | Use properties, a differential oracle, fuzzing, and mutation | Round-trip properties, the Python oracle, a WAV fuzz target | Coming soon |
+| [7. Native and formal-lite](m07-native-formal/index.md) | Run sanitizers, Miri, and a small bounded proof, and know what a proof is about | ASan/UBSan on the consumer, Miri on conversion, a Kani proof that gain does not overflow | Coming soon |
+| [8. Run it and prove it](m08-run-and-prove/index.md) | Generate evidence bound to a tree hash, including what you did not check | `verify_runner` output for `pcmx`, plus a `Verified-by` trailer | Coming soon |
+| [9. Reward hacking](m09-reward-hacking/index.md) | Catch test edits, special cases, skips, and a gate the agent switched off | Red-team corpus and a tamper scan, with the real lock on the server | Coming soon |
+| [10. Agents verifying agents](m10-agents-verifying-agents/index.md) | Calibrate one rubric reviewer instead of stacking two | A reviewer scored on mocked incidents, with precision and recall | Coming soon |
+| [11. Orchestration](m11-orchestration/index.md) | Run several agents in worktrees through gates, CI, and a merge queue | An orchestrator over 4–8 mocked sessions | Coming soon |
+| [12. Metrics](m12-metrics-ratchet/index.md) | Measure escapes, reads per ship, cost, and catch rate, and turn a miss into a check | A report from trailers and CI, with risk-weighted pruning | Coming soon |
+| [Capstone](capstone/index.md) | Publish a before/after on a real repo | Measurements, not a checklist you once followed | Coming soon |
+
+Modules 9 and 4 overlap on purpose. Module 4 builds gates you can unit-test. Module 9 is where those gates meet branch protection, held-out tests, and the cases a local hook cannot see.

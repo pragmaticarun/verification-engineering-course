@@ -1,0 +1,21 @@
+Creative Commons Attribution 4.0 International
+
+The prose in this repository is licensed under CC BY 4.0.
+That is the Markdown under docs/, the explanatory text under planning/,
+and the written lessons in labs/ that are not program source.
+
+You may share and adapt that prose for any purpose, including commercial use,
+if you give appropriate credit, provide a link to the license, and indicate
+whether you made changes.
+
+Full legal text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Credit this course as:
+"Verification Engineering for AI Coding Agents" by Arunkumar Maniam Rajan.
+
+Code is not covered by this file. pcmkit, the harness, the lab programs,
+tools, and workflows are under the MIT License in the LICENSE file.
+
+The course discusses a public X article and vendor documentation. Those
+works remain under their own licences. This course quotes them by link,
+not by copying their text.

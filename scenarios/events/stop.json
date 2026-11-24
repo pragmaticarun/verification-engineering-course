@@ -1,0 +1,11 @@
+{
+  "session_id": "replace-me",
+  "transcript_path": "/tmp/verify-course-transcript.jsonl",
+  "cwd": ".",
+  "permission_mode": "default",
+  "hook_event_name": "Stop",
+  "stop_hook_active": false,
+  "last_assistant_message": "The clamp is in place and the fixture command has run.",
+  "background_tasks": [],
+  "session_crons": []
+}

@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.verify/evidence.json
+.verify/evidence.md
+.verify/NEEDS-HUMAN.md

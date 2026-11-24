@@ -1,0 +1,17 @@
+[package]
+name = "pcmx"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "CLI for the pcmkit WAV/PCM library."
+
+[[bin]]
+name = "pcmx"
+path = "src/main.rs"
+
+[dependencies]
+pcmkit = { path = "../pcmkit" }
+
+[lints]
+workspace = true

@@ -1,0 +1,10 @@
+# Owners for the harness itself. GitHub only enforces this when branch
+# protection or a ruleset requires code owner review.
+
+/.claude/ @pragmaticarun
+/.verify/ @pragmaticarun
+/CLAUDE.md @pragmaticarun
+/AGENTS.md @pragmaticarun
+/REVIEW.md @pragmaticarun
+/.cursor/rules/ @pragmaticarun
+/.github/ @pragmaticarun

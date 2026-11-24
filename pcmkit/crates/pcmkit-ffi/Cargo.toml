@@ -1,0 +1,16 @@
+[package]
+name = "pcmkit-ffi"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "C ABI for a handful of pcmkit operations."
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+pcmkit = { path = "../pcmkit" }
+
+[lints]
+workspace = true

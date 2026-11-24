@@ -1,0 +1,9 @@
+target/
+site/
+.venv/
+__pycache__/
+*.pyc
+pcmkit/cpp/build/
+.cache/
+*.egg-info/
+.pytest_cache/
