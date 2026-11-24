@@ -1,0 +1,2 @@
+crates/pcmkit/src/clamp.rs:19:15: replace > with >= in clamp_unit
+crates/pcmkit/src/clamp.rs:21:22: replace < with <= in clamp_unit
