@@ -67,10 +67,22 @@ nav:
       - "4. Lab": m04-hooks-gates/lab.md
       - "4. Quiz": m04-hooks-gates/quiz.md
       - "4. Project": m04-hooks-gates/project.md
-      - "5. Fast layers (coming soon)": m05-fast-layers/index.md
-      - "6. Tests an agent can't fool (coming soon)": m06-cant-fool-tests/index.md
-      - "7. Native code and light formal methods (coming soon)": m07-native-formal/index.md
-      - "8. Run it and prove it (coming soon)": m08-run-and-prove/index.md
+      - "5. Fast layers": m05-fast-layers/index.md
+      - "5. Lab": m05-fast-layers/lab.md
+      - "5. Quiz": m05-fast-layers/quiz.md
+      - "5. Project": m05-fast-layers/project.md
+      - "6. Tests an agent can't fool": m06-cant-fool-tests/index.md
+      - "6. Lab": m06-cant-fool-tests/lab.md
+      - "6. Quiz": m06-cant-fool-tests/quiz.md
+      - "6. Project": m06-cant-fool-tests/project.md
+      - "7. Native and formal-lite": m07-native-formal/index.md
+      - "7. Lab": m07-native-formal/lab.md
+      - "7. Quiz": m07-native-formal/quiz.md
+      - "7. Project": m07-native-formal/project.md
+      - "8. Run it and prove it": m08-run-and-prove/index.md
+      - "8. Lab": m08-run-and-prove/lab.md
+      - "8. Quiz": m08-run-and-prove/quiz.md
+      - "8. Project": m08-run-and-prove/project.md
       - "9. Reward hacking and locks (coming soon)": m09-reward-hacking/index.md
       - "10. Agents verifying agents (coming soon)": m10-agents-verifying-agents/index.md
       - "11. Orchestration (coming soon)": m11-orchestration/index.md

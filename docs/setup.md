@@ -18,7 +18,11 @@ make check
 
 That formats and clippy-checks `pcmkit`, runs its tests, runs the Python oracle, builds the C++ consumer, runs the normalize acceptance command, and runs the harness unit tests. The harness tests include the cheat corpus. The first run compiles Rust. Later runs are quick. Cargo's target directory is `target/` at the repo root so the crates share one build.
 
-`make doctor` prints versions and a disk summary. Heavy tools (fuzzing, Miri, Kani, mutation) are later modules and are not part of this milestone's CI.
+`make doctor` prints versions and a disk summary. `make fast` is the tier module 5 describes: format, clippy, tests, the flaky-pattern scan, ruff, mypy, clang-tidy, and the C++ consumer. Install the pinned Python tools first (`ruff==0.17.6` and `mypy==2.4.1` in `requirements-checks.txt`) and have `clang-tidy` on `PATH`. The default Ubuntu package is clang-tidy 18, which is what the lesson was run against.
+
+`make check` adds the oracle, the one-mutant smoke, the end-to-end golden, the sanitizer build of the consumer, the acceptance command, and the harness tests.
+
+A separate workflow, job `heavy`, runs one test under Miri on the pinned nightly `nightly-2026-11-23`. The stable toolchain in `rust-toolchain.toml` does not ship a Miri component. That job is not one of the two status checks the ruleset template names. cargo-fuzz, Kani, cargo-mutants, mutmut, insta, nextest, and Criterion are cited and not installed. The lessons say so next to the command CI actually runs.
 
 ## The site
 

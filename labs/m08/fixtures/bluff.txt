@@ -1,0 +1,2 @@
+E2E: listened on laptop speakers and it passed
+NOT CHECKED:

@@ -91,6 +91,7 @@ class Report:
     commands: list[dict]
     triggered: list[str]
     changed: list[str] = field(default_factory=list)
+    notes: list[str] = field(default_factory=list)
 
     def to_evidence(self) -> dict:
         body = {
@@ -103,9 +104,26 @@ class Report:
             "triggered": self.triggered,
             "tool_versions": {"python": platform.python_version()},
             "finished_at": datetime.now(timezone.utc).isoformat(),
+            "notes": self.notes,
         }
         body["integrity"] = integrity(body)
         return body
+
+
+def command_notes(stdout: str) -> list[str]:
+    """Lines a check prints that name what it ran and what it did not run.
+
+    These are copied into the evidence file. They are not a verdict. The
+    integrity hash still covers the exit codes, not these sentences.
+    """
+    notes: list[str] = []
+    for line in stdout.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("E2E:") or stripped.startswith("NOT CHECKED:"):
+            notes.append(stripped)
+        if len(notes) >= 40:
+            break
+    return notes
 
 
 def integrity(body: dict) -> str:
@@ -446,6 +464,7 @@ def run_command(cmd: str, repo: Path) -> dict:
         "exit_code": exit_code,
         "stdout_sha256": hashlib.sha256(stdout.encode()).hexdigest(),
         "stderr_sha256": hashlib.sha256(stderr.encode()).hexdigest(),
+        "stdout": stdout,
     }
 
 
@@ -466,6 +485,7 @@ def run_verify(repo: Path, allow_test_change: bool = False) -> Report:
     problems.extend(scope_problems(repo, changed))
     commands: list[dict] = []
     triggered: list[str] = []
+    notes: list[str] = []
     if checks and not any(item.startswith("locked path") for item in problems):
         for check in triggered_checks(checks, changed):
             check_id = str(check.get("id", "unnamed"))
@@ -475,6 +495,7 @@ def run_verify(repo: Path, allow_test_change: bool = False) -> Report:
                 problems.append(f"check {check_id} has an empty command")
                 continue
             result = run_command(command, repo)
+            notes.extend(command_notes(result.pop("stdout", "")))
             result["id"] = check_id
             commands.append(result)
             if result["exit_code"] != 0:
@@ -483,7 +504,7 @@ def run_verify(repo: Path, allow_test_change: bool = False) -> Report:
     if before != after:
         problems.append("a check changed the tree it was judging")
     verdict = "PASS" if not problems else "FAIL"
-    report = Report(verdict, problems, before, commands, triggered, changed)
+    report = Report(verdict, problems, before, commands, triggered, changed, notes)
     write_evidence(repo, report)
     return report
 
@@ -513,15 +534,13 @@ def write_evidence(repo: Path, report: Report) -> None:
     if report.problems:
         lines.extend(["", "## Problems"])
         lines.extend(f"- {problem}" for problem in report.problems)
-    lines.extend(
-        [
-            "",
-            "## Narrative",
-            "E2E:",
-            "NOT CHECKED:",
-            "",
-        ]
-    )
+    lines.extend(["", "## Narrative"])
+    if report.notes:
+        lines.extend(report.notes)
+    else:
+        lines.append("No command printed an E2E: or NOT CHECKED: line.")
+        lines.append("An empty narrative is not a pass, and it is not a list of skips.")
+    lines.append("")
     (directory / "evidence.md").write_text("\n".join(lines))
 
 

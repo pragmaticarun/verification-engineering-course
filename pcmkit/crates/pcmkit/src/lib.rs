@@ -9,6 +9,9 @@ mod error;
 mod png;
 mod wav;
 
+#[cfg(test)]
+mod course_checks;
+
 pub use audio::{
     apply_gain_db, ensure_finite, mix, normalize_peak, peak, resample_linear, rms, AudioBuffer,
 };

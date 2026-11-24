@@ -1,0 +1,42 @@
+# One Miri smoke. Not a required status check. The pinned stable toolchain
+# (1.83.0) does not publish a Miri component, so this job uses a pinned nightly.
+name: heavy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  heavy:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: nightly-2026-11-23
+          components: miri, rust-src
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            ~/.cache/miri
+            target
+          key: miri-nightly-2026-11-23-${{ hashFiles('pcmkit/Cargo.lock') }}
+          restore-keys: |
+            miri-nightly-2026-11-23-
+
+      - name: Miri on one gain test
+        env:
+          CARGO_TARGET_DIR: ${{ github.workspace }}/target
+        run: |
+          cargo +nightly-2026-11-23 miri setup
+          cargo +nightly-2026-11-23 miri test --manifest-path pcmkit/Cargo.toml -p pcmkit --lib miri_gain_of_zero_is_finite

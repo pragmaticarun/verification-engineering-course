@@ -36,6 +36,21 @@ int main() {
         return fail(7);
     }
 
+    float dirty[] = {0.25f, 0.5f};
+    if (pcmkit_apply_gain(dirty, 2, NAN) == 0) {
+        return fail(12);
+    }
+    if (dirty[0] != 0.25f || dirty[1] != 0.5f) {
+        return fail(13);
+    }
+    float non_finite[] = {0.25f, NAN};
+    if (pcmkit_apply_gain(non_finite, 2, 0.0f) == 0) {
+        return fail(14);
+    }
+    if (non_finite[0] != 0.25f) {
+        return fail(15);
+    }
+
     float quiet[] = {0.0f, 0.0f};
     if (pcmkit_normalize(quiet, 2) != 0) {
         return fail(8);
