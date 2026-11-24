@@ -18,6 +18,6 @@ About two hours. You finish with one `prove.py` run and a six-line record that m
 
 ## Done when
 
-A reader can replay the command and diff your note against the stdout. The note names listening as not checked. Modules 9 through 12 are still coming. They are where this record meets a lock the agent cannot edit, a second agent, and a count of what escaped.
+A reader can replay the command and diff your note against the stdout. The note names listening as not checked. Modules 9 through 12 are the lock, the second agent, the worktrees, and the counts. The capstone is the before and after.
 
 Back to the [syllabus](../syllabus.md).

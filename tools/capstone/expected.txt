@@ -1,0 +1,10 @@
+before_ships 6
+before_escapes 3
+before_reads 2/6
+before_catch 1/4
+before_cost_usd 2.10
+after_ships 4
+after_escapes 0
+after_reads 1/4
+after_catch 4/4
+after_cost_usd 0.80

@@ -43,7 +43,7 @@ The tree hash is the one from module 4: contents, not timestamps, excluding the 
 
 ## What this run is not
 
-It is not cargo-fuzz, not Kani, not Miri, and not a listening test. Those words appear in the output so a reader does not fill them in. The [verification note](https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/) treats a NOT CHECKED line as part of the record. The article's version asked the agent to type the file and then grepped it. The runner types the file from the commands. That is the correction module 4 made, applied here to a real `pcmx` invocation.
+`prove.py` did not start cargo-fuzz, Kani, or Miri, and it is not a listening test. Those words appear in the output so a reader does not fill them in. The heavy job separately runs a 15-second cargo-fuzz smoke, one Miri test, and one Kani harness. That does not make this command those runs. Deleting the `NOT CHECKED` line would hide the limit of `prove.py`. The [verification note](https://claude.dev/blog/how-the-claude-code-team-thinks-about-verification/) treats a NOT CHECKED line as part of the record. The article's version asked the agent to type the file and then grepped it. The runner types the file from the commands. That is the correction module 4 made, applied here to a real `pcmx` invocation.
 
 The verify skill tells Claude to quote the runner and not to invent the lines. Codex and Cursor do not load the skill. They load the instruction files, which already say to run the runner. CI runs `prove.py` without a model.
 

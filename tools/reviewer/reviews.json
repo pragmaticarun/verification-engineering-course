@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "id": "t-bug-worded",
+      "split": "tune",
+      "label": "bug",
+      "text": "HOLD exit 1 on the gain command"
+    },
+    {
+      "id": "t-bug-blunt",
+      "split": "tune",
+      "label": "bug",
+      "text": "This is a bug, exit 1"
+    },
+    {
+      "id": "t-clean",
+      "split": "tune",
+      "label": "clean",
+      "text": "SHIP exit 0"
+    },
+    {
+      "id": "t-vague",
+      "split": "tune",
+      "label": "clean",
+      "text": "I looked at the diff"
+    },
+    {
+      "id": "r-miss",
+      "split": "report",
+      "label": "bug",
+      "text": "ship it, looks good"
+    },
+    {
+      "id": "r-catch",
+      "split": "report",
+      "label": "bug",
+      "text": "HOLD exit 1 on the gain command"
+    },
+    {
+      "id": "r-catch-2",
+      "split": "report",
+      "label": "bug",
+      "text": "HOLD exit 1"
+    },
+    {
+      "id": "r-clean",
+      "split": "report",
+      "label": "clean",
+      "text": "SHIP exit 0"
+    },
+    {
+      "id": "r-false",
+      "split": "report",
+      "label": "clean",
+      "text": "HOLD exit 1 because the log looks noisy"
+    },
+    {
+      "id": "r-clean-2",
+      "split": "report",
+      "label": "clean",
+      "text": "SHIP exit 0 after the oracle"
+    }
+  ]
+}

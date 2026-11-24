@@ -1,0 +1,7 @@
+sessions 6
+worktrees 6
+queued 3
+held 1
+stale 1
+stale_base 1
+budget 8

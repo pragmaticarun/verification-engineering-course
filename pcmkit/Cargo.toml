@@ -1,6 +1,8 @@
 [workspace]
 resolver = "2"
 members = ["crates/pcmkit", "crates/pcmx", "crates/pcmkit-ffi"]
+# The fuzz package links libFuzzer and is built only by the heavy job.
+exclude = ["fuzz", "kani"]
 
 [workspace.package]
 version = "0.1.0"

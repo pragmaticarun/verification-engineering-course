@@ -16,7 +16,7 @@ Design a verification harness, run it on recorded agent sessions, and read one e
 
 ## This milestone
 
-Modules 1–8 are the full lessons. Modules 9–12 and the capstone are on the [syllabus](syllabus.md) and marked coming soon.
+Modules 1–12 and the capstone are the full lessons. The measurements are fixtures. No module calls a model.
 
 | Piece | Where |
 | --- | --- |
@@ -28,6 +28,11 @@ Modules 1–8 are the full lessons. Modules 9–12 and the capstone are on the [
 | Properties, a differential oracle, a fuzz smoke, one mutant | [Module 6](m06-cant-fool-tests/index.md) |
 | Sanitizers, one Miri test, and what a proof is about | [Module 7](m07-native-formal/index.md) |
 | An end-to-end `pcmx` run whose notes say what was not checked | [Module 8](m08-run-and-prove/index.md) |
+| Held-out cases, a tamper scan, and a ruleset that is still a template | [Module 9](m09-reward-hacking/index.md) |
+| One rubric reviewer, scored on a report split | [Module 10](m10-agents-verifying-agents/index.md) |
+| Six worktrees and a budget of eight | [Module 11](m11-orchestration/index.md) |
+| Reads per ship, escapes, and a pruner that keeps a quiet lock | [Module 12](m12-metrics-ratchet/index.md) |
+| The same eight changes, before the harness and after it | [Capstone](capstone/index.md) |
 | The running example | `pcmkit/` |
 | The harness you can copy | `harness/` |
 

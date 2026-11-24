@@ -1,0 +1,6 @@
+split report
+precision 2/3
+recall 2/3
+true_neg 2
+tune_excluded 4
+adversary_rejected 1

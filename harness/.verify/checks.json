@@ -83,6 +83,36 @@
       "when": ["pcmkit/**"],
       "check": "python3 pcmkit/e2e/prove.py",
       "why": "Normalize and the waveform PNG must match committed bytes, and NOT CHECKED stays explicit."
+    },
+    {
+      "id": "held-out",
+      "when": ["tools/heldout/**"],
+      "check": "python3 tools/heldout/run.py",
+      "why": "Hidden peak cases must fail a checker that only saw non-negative samples."
+    },
+    {
+      "id": "reviewer",
+      "when": ["tools/reviewer/**"],
+      "check": "python3 tools/reviewer/score.py",
+      "why": "The rubric reviewer is scored on the report split, not the tune split."
+    },
+    {
+      "id": "orchestrator",
+      "when": ["tools/orchestrator/**"],
+      "check": "python3 tools/orchestrator/run.py",
+      "why": "Six mocked agents in worktrees, with stale reviews refused."
+    },
+    {
+      "id": "metrics",
+      "when": ["tools/metrics/**"],
+      "check": "python3 tools/metrics/report.py",
+      "why": "Reads per ship, escapes, and a pruner that keeps a catastrophic check."
+    },
+    {
+      "id": "capstone",
+      "when": ["tools/capstone/**"],
+      "check": "python3 tools/capstone/before_after.py",
+      "why": "The same mocked changes, measured before the harness and after it."
     }
   ]
 }

@@ -18,7 +18,7 @@
 
 **Gate mode.** `off` does nothing. `observe` logs the decision and allows the action. `enforce` blocks. The mode that counts is the one on the base ref.
 
-**Held-out tests.** Tests CI runs that the agent does not see in the worktree. They are a later module. This milestone's corpus is visible, and it is still enough to show a gate failing open.
+**Held-out tests.** Tests CI runs that the mocked agent does not see. `tools/heldout/hidden_cases.json` is two negative peaks. The mock-agent worktree is a copy of `harness/` and does not include that file. The visible cases are all non-negative, so `max(samples)` passes them.
 
 **Locked path.** A file the change is not allowed to edit: hooks, settings, the checks file, the gate file, the instruction files. The minimum list lives in the runner, so deleting it from `checks.json` does not unlock it.
 

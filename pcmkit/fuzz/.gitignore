@@ -1,0 +1,6 @@
+artifacts/
+target/
+corpus/wav_parser/*
+!corpus/wav_parser/empty
+!corpus/wav_parser/riff-seed
+!corpus/wav_parser/bytes-seed

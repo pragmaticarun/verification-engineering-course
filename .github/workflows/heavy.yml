@@ -1,5 +1,5 @@
-# One Miri smoke. Not a required status check. The pinned stable toolchain
-# (1.83.0) does not publish a Miri component, so this job uses a pinned nightly.
+# Miri, cargo-mutants on clamp.rs, a 15-second cargo-fuzz smoke, and one Kani proof.
+# Not a required status check. The ruleset template names `test` and `site` only.
 name: heavy
 
 on:
@@ -13,7 +13,7 @@ permissions:
 jobs:
   heavy:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
 
@@ -22,21 +22,54 @@ jobs:
           toolchain: nightly-2026-11-23
           components: miri, rust-src
 
+      - name: C++ toolchain for libFuzzer
+        run: sudo apt-get update && sudo apt-get install -y g++
+
       - uses: actions/cache@v4
         with:
           path: |
             ~/.cargo/registry/index
             ~/.cargo/registry/cache
             ~/.cargo/git/db
+            ~/.cargo/bin/cargo-mutants
+            ~/.cargo/bin/cargo-fuzz
             ~/.cache/miri
+            ~/.kani
             target
-          key: miri-nightly-2026-11-23-${{ hashFiles('pcmkit/Cargo.lock') }}
+          key: heavy-2026-11-23-mutants-26.0.0-fuzz-0.13.2-kani-0.68.0-${{ hashFiles('pcmkit/Cargo.lock', 'pcmkit/fuzz/Cargo.lock') }}
           restore-keys: |
-            miri-nightly-2026-11-23-
+            heavy-2026-11-23-mutants-26.0.0-fuzz-0.13.2-kani-0.68.0-
+
+      - name: Install pinned cargo-mutants and cargo-fuzz
+        run: |
+          # rust-toolchain.toml selects 1.83.0, which can build cargo-mutants 26.0.0.
+          # 27.1.0 needs rustc 1.88. cargo-fuzz 0.13.2 needs edition 2024, so the
+          # binary is built with the pinned nightly.
+          if ! cargo mutants --version 2>/dev/null | grep -q '^cargo-mutants 26.0.0'; then
+            cargo install cargo-mutants --version 26.0.0 --locked
+          fi
+          if ! cargo fuzz --version 2>/dev/null | grep -q '^cargo-fuzz 0.13.2'; then
+            cargo +nightly-2026-11-23 install cargo-fuzz --version 0.13.2 --locked
+          fi
+          # kani-verifier 0.68.0 is the plugin. Its first run also installs
+          # nightly-2026-08-21, which is Kani's own pin. The crates.io package
+          # named `kani` is unrelated and stops at 0.0.1.
+          if ! cargo kani --version 2>/dev/null | grep -q '0.68.0'; then
+            cargo +nightly-2026-11-23 install kani-verifier --version 0.68.0 --locked
+          fi
 
       - name: Miri on one gain test
         env:
-          CARGO_TARGET_DIR: ${{ github.workspace }}/target
+          CARGO_TARGET_DIR: ${{ github.workspace }}/target/miri
         run: |
           cargo +nightly-2026-11-23 miri setup
           cargo +nightly-2026-11-23 miri test --manifest-path pcmkit/Cargo.toml -p pcmkit --lib miri_gain_of_zero_is_finite
+
+      - name: cargo-mutants on clamp.rs
+        run: bash tools/heavy/mutants.sh
+
+      - name: cargo-fuzz for 15 seconds
+        run: bash tools/heavy/fuzz.sh
+
+      - name: Kani on one clamp proof
+        run: bash tools/heavy/kani.sh

@@ -1,0 +1,4 @@
+[
+  {"id": "fresh", "tree_hash": "abc", "reviewed_hash": "abc"},
+  {"id": "stale", "tree_hash": "def", "reviewed_hash": "abc"}
+]

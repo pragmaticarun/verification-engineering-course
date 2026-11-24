@@ -49,7 +49,7 @@ You add a Kani harness in a comment: `// kani::proof gain never overflows`.
 
 ??? success "What would have to be true before the comment is a result?"
 
-    Kani would have to be installed, pinned, and executed in CI, and the harness would have to be the property you mean, on the function you mean. A comment is not a run. This repository does not install Kani. The result you have is the i16 grid. Cite that.
+    Kani would have to be installed, pinned, and executed, and the harness would have to be the property you mean, on the function you mean. A comment is not a run. The heavy job runs `bash tools/heavy/kani.sh`, harness `clamp_unit_holds_an_i8_grid`, which is every i8 divided by 16 through `clamp_unit`. It does not say "gain never overflows" for every f32 or for the C caller. Cite that harness, or cite the i16 grid, and do not cite the comment.
 
 ## Exercise
 

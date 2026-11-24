@@ -83,8 +83,23 @@ nav:
       - "8. Lab": m08-run-and-prove/lab.md
       - "8. Quiz": m08-run-and-prove/quiz.md
       - "8. Project": m08-run-and-prove/project.md
-      - "9. Reward hacking and locks (coming soon)": m09-reward-hacking/index.md
-      - "10. Agents verifying agents (coming soon)": m10-agents-verifying-agents/index.md
-      - "11. Orchestration (coming soon)": m11-orchestration/index.md
-      - "12. Metrics and the ratchet (coming soon)": m12-metrics-ratchet/index.md
-      - "Capstone (coming soon)": capstone/index.md
+      - "9. Reward hacking and locks": m09-reward-hacking/index.md
+      - "9. Lab": m09-reward-hacking/lab.md
+      - "9. Quiz": m09-reward-hacking/quiz.md
+      - "9. Project": m09-reward-hacking/project.md
+      - "10. Agents verifying agents": m10-agents-verifying-agents/index.md
+      - "10. Lab": m10-agents-verifying-agents/lab.md
+      - "10. Quiz": m10-agents-verifying-agents/quiz.md
+      - "10. Project": m10-agents-verifying-agents/project.md
+      - "11. Orchestration": m11-orchestration/index.md
+      - "11. Lab": m11-orchestration/lab.md
+      - "11. Quiz": m11-orchestration/quiz.md
+      - "11. Project": m11-orchestration/project.md
+      - "12. Metrics and the ratchet": m12-metrics-ratchet/index.md
+      - "12. Lab": m12-metrics-ratchet/lab.md
+      - "12. Quiz": m12-metrics-ratchet/quiz.md
+      - "12. Project": m12-metrics-ratchet/project.md
+      - Capstone: capstone/index.md
+      - "Capstone lab": capstone/lab.md
+      - "Capstone quiz": capstone/quiz.md
+      - "Capstone project": capstone/project.md

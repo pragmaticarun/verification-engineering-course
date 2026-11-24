@@ -5,6 +5,8 @@ __pycache__/
 *.pyc
 pcmkit/cpp/build/
 pcmkit/cpp/build-san/
+mutants.out/
+mutants.out.old/
 .cache/
 *.egg-info/
 .pytest_cache/

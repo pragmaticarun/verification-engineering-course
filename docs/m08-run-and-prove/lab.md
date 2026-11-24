@@ -62,4 +62,4 @@ You listened on headphones. The click is in the source file, not in the normaliz
 
 ??? success "What did they remove?"
 
-    A true statement about the limit of this command. The suite did not start cargo-fuzz. Deleting the line does not run the fuzzer. It makes a reader invent a coverage-guided run that never happened. The runner will also stop copying the line, because it only copies what the command prints. Put the line back.
+    A true statement about the limit of this command. `prove.py` did not start cargo-fuzz. The heavy job's 15-second `wav_parser` smoke is a different command. Deleting the line does not attach that smoke to this evidence file. It makes a reader invent a run that `prove.py` never did. The runner copies what the command prints. Put the line back.

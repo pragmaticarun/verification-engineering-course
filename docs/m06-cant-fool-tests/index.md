@@ -20,9 +20,9 @@ flowchart TD
 
 ## One mutant, on purpose
 
-[cargo-mutants](https://mutants.rs/) and [mutmut](https://mutmut.readthedocs.io/en/latest/) rewrite the program and ask whether the tests notice. They recompile or re-run many times. CI does not install them. `pcmkit/oracle/mutation_smoke.py` applies one mutation by hand: drop the half-away-from-zero rounding and truncate toward zero. Full-scale codes still match, so the three-point property stays green. The differential samples include `0.2`, and that check goes red.
+[cargo-mutants](https://mutants.rs/) and [mutmut](https://mutmut.readthedocs.io/en/latest/) rewrite the program and ask whether the tests notice. They recompile many times. The light job does not install them. `pcmkit/oracle/mutation_smoke.py` applies one mutation by hand: drop the half-away-from-zero rounding and truncate toward zero. Full-scale codes still match, so the three-point property stays green. The differential samples include `0.2`, and that check goes red.
 
-That is a smoke of mutation testing. It is not a mutation score. A score would be the fraction of a generated set that the suite kills. Module 12 is where a score belongs. This module only insists you have seen one mutant live through a weak test and die in a stronger one.
+The heavy job does install cargo-mutants, pinned at 26.0.0 because 27.1.0 needs rustc 1.88 and this course pins 1.83.0. It mutates one file, `pcmkit/crates/pcmkit/src/clamp.rs`, with `--jobs 1` and a 60-second timeout on each mutant. Eleven mutants are generated. Nine are caught. Two survive because they are equivalent: `>` changed to `>=`, and `<` changed to `<=`, still return the rail when the sample is already on it. `tools/heavy/mutants.sh` allows those two lines and fails if a different mutant survives. That is a smoke of the tool on one function. It is not a mutation score for the crate, and it is not mutmut.
 
 ```python
 --8<-- "pcmkit/oracle/mutation_smoke.py"
@@ -34,7 +34,15 @@ The Python file `pcmkit/oracle/reference.py` is the other quantizer, and `test_o
 
 ## A fuzz smoke is not coverage-guided fuzzing
 
-`parser_does_not_panic_on_a_fixed_fuzz_smoke` feeds the WAV parser a fixed sequence of random buffers and mutated valid files. It asserts the parser returns, rather than panics. [cargo-fuzz](https://rust-fuzz.github.io/book/cargo-fuzz.html) and [libFuzzer](https://llvm.org/docs/LibFuzzer.html) search with coverage and will find corners this sequence never hits. They need their own toolchain. CI does not run them. The smoke is what `cargo test` runs, and the lesson is not allowed to call it a fuzz campaign.
+`parser_does_not_panic_on_a_fixed_fuzz_smoke` feeds the WAV parser a fixed sequence of random buffers and mutated valid files. It asserts the parser returns, rather than panics. That is what `cargo test` runs in the light job. [cargo-fuzz](https://rust-fuzz.github.io/book/cargo-fuzz.html) and [libFuzzer](https://llvm.org/docs/LibFuzzer.html) search with coverage. The heavy job runs that search for 15 seconds: cargo-fuzz 0.13.2, target `wav_parser`, installed and built with `nightly-2026-11-23` because 0.13.2's dependencies need Cargo edition 2024 and the pinned 1.83.0 toolchain does not have it. A crash in those 15 seconds fails the job. Fifteen seconds is not a campaign, and it is not a coverage number. The fuzz package is excluded from the workspace, so `cargo test --offline` never tries to link libFuzzer.
+
+```bash
+--8<-- "tools/heavy/mutants.sh"
+```
+
+```bash
+--8<-- "tools/heavy/fuzz.sh"
+```
 
 ImpossibleBench builds tasks whose tests contradict the specification, and treats a pass as a cheat ([paper](https://arxiv.org/abs/2510.20270)). Read-only tests stop an agent from editing the test and do not stop it from special-casing a test name or overloading equality. Anthropic's note on [reward hacking](https://www.anthropic.com/research/emergent-misalignment-reward-hacking) uses a blunt version of the same reward: a program that calls `sys.exit(0)` so the harness records a pass. A green suite is a reward. Write the suite so the reward is hard to pick up without the behavior.
 

@@ -1,0 +1,11 @@
+[package]
+name = "pcmkit-kani"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+# The `kani` crate is injected by `cargo kani`. It is not the crates.io package
+# named kani (that package stops at 0.0.1 and is unrelated).
+
+[dependencies]
+pcmkit = { path = "../crates/pcmkit" }
