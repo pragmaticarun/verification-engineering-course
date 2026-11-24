@@ -1,0 +1,4 @@
+E2E: pcmx gain --normalize and waveform match the committed goldens
+NOT CHECKED: a person has not listened to this clip
+NOT CHECKED: cargo-fuzz was not run
+NOT CHECKED: Kani was not run

@@ -12,7 +12,7 @@ A repository skill at this path replaces Claude Code's bundled `/verify`. Use th
 1. Run `python3 .verify/verify_runner.py` from the repository root.
 2. If it exits non-zero, read the `PROBLEM:` lines and fix the code. Do not edit the harness to make the command quieter.
 3. If it exits 0, you may summarize what the commands were. Quote the runner. Do not write your own `VERDICT: PASS`.
-4. Fill the `E2E` and `NOT CHECKED` lines in the generated `evidence.md` only after the runner has written the file. Those lines are notes. They are not the verdict.
+4. The runner copies `E2E:` and `NOT CHECKED:` lines from the stdout of the checks into `evidence.md`. Do not invent those lines, and do not turn a NOT CHECKED line into a pass. A listening note stays NOT CHECKED unless a person records it as an exemption trailer. The lines are notes. The verdict is the exit code.
 
 ## Do not
 

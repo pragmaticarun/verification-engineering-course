@@ -4,6 +4,7 @@ site/
 __pycache__/
 *.pyc
 pcmkit/cpp/build/
+pcmkit/cpp/build-san/
 .cache/
 *.egg-info/
 .pytest_cache/

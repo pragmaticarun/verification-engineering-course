@@ -10,10 +10,10 @@ The running example is `pcmkit`: a Rust WAV/PCM library, the `pcmx` CLI, a C ABI
 | [2. Defining done](m02-defining-done/index.md) | Write a brief an agent can fail | Brief and acceptance command for `pcmx gain --normalize` | Ready |
 | [3. Instructions and permissions](m03-instructions-permissions/index.md) | Keep one agreement across Claude, Codex, and Cursor | Deny rules for the harness directories | Ready |
 | [4. Hooks and gates](m04-hooks-gates/index.md) | Test a Stop hook and a commit hook on recorded events | Corrected gates, and the ten holes closed in CI | Ready |
-| [5. Fast layers](m05-fast-layers/index.md) | Stack formatters, linters, unit tests, and golden files so they finish in under a minute | `verify fast` for WAV, PNG, and the C ABI | Coming soon |
-| [6. Tests an agent can't fool](m06-cant-fool-tests/index.md) | Use properties, a differential oracle, fuzzing, and mutation | Round-trip properties, the Python oracle, a WAV fuzz target | Coming soon |
-| [7. Native and formal-lite](m07-native-formal/index.md) | Run sanitizers, Miri, and a small bounded proof, and know what a proof is about | ASan/UBSan on the consumer, Miri on conversion, a Kani proof that gain does not overflow | Coming soon |
-| [8. Run it and prove it](m08-run-and-prove/index.md) | Generate evidence bound to a tree hash, including what you did not check | `verify_runner` output for `pcmx`, plus a `Verified-by` trailer | Coming soon |
+| [5. Fast layers](m05-fast-layers/index.md) | Stack formatters, linters, unit tests, and golden files | `make fast`: rustfmt, clippy, goldens, ruff, mypy, clang-tidy, the C ABI | Ready |
+| [6. Tests an agent can't fool](m06-cant-fool-tests/index.md) | Use properties, a differential oracle, a fuzz smoke, and a mutant | Fixed-seed properties, the Python oracle, one killed mutant | Ready |
+| [7. Native and formal-lite](m07-native-formal/index.md) | Run sanitizers and a bounded check, and say what a proof is about | ASan/UBSan on the consumer, an exhaustive i16 grid, one Miri test on nightly | Ready |
+| [8. Run it and prove it](m08-run-and-prove/index.md) | Generate evidence bound to a tree hash, including what you did not check | `pcmx` normalize plus a waveform golden, copied into the evidence file | Ready |
 | [9. Reward hacking](m09-reward-hacking/index.md) | Catch test edits, special cases, skips, and a gate the agent switched off | Red-team corpus and a tamper scan, with the real lock on the server | Coming soon |
 | [10. Agents verifying agents](m10-agents-verifying-agents/index.md) | Calibrate one rubric reviewer instead of stacking two | A reviewer scored on mocked incidents, with precision and recall | Coming soon |
 | [11. Orchestration](m11-orchestration/index.md) | Run several agents in worktrees through gates, CI, and a merge queue | An orchestrator over 4–8 mocked sessions | Coming soon |

@@ -16,7 +16,7 @@ Design a verification harness, run it on recorded agent sessions, and read one e
 
 ## This milestone
 
-Modules 1–4 are the full lessons. Modules 5–12 and the capstone are on the [syllabus](syllabus.md) and marked coming soon.
+Modules 1–8 are the full lessons. Modules 9–12 and the capstone are on the [syllabus](syllabus.md) and marked coming soon.
 
 | Piece | Where |
 | --- | --- |
@@ -24,6 +24,10 @@ Modules 1–4 are the full lessons. Modules 5–12 and the capstone are on the [
 | Briefs, non-goals, allowed files, acceptance commands | [Module 2](m02-defining-done/index.md) |
 | `CLAUDE.md`, `AGENTS.md`, Cursor rules, deny rules | [Module 3](m03-instructions-permissions/index.md) |
 | Stop and commit gates, tested on recorded events | [Module 4](m04-hooks-gates/index.md) |
+| Formatters, linters, goldens, and the C ABI, in one fast tier | [Module 5](m05-fast-layers/index.md) |
+| Properties, a differential oracle, a fuzz smoke, one mutant | [Module 6](m06-cant-fool-tests/index.md) |
+| Sanitizers, one Miri test, and what a proof is about | [Module 7](m07-native-formal/index.md) |
+| An end-to-end `pcmx` run whose notes say what was not checked | [Module 8](m08-run-and-prove/index.md) |
 | The running example | `pcmkit/` |
 | The harness you can copy | `harness/` |
 

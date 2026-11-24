@@ -47,6 +47,42 @@
       "when": ["pcmkit/**", "briefs/gain-normalize/**"],
       "check": "python3 briefs/gain-normalize/accept.py",
       "why": "The brief for peak-normalize is done only when its acceptance command exits 0."
+    },
+    {
+      "id": "pcmkit-flaky",
+      "when": ["pcmkit/**", "briefs/**"],
+      "check": "python3 pcmkit/fast/flaky_scan.py pcmkit briefs",
+      "why": "The fast tier rejects sleeps, skips, and retry loops."
+    },
+    {
+      "id": "pcmkit-python",
+      "when": ["pcmkit/fast/**", "pcmkit/e2e/**", "pcmkit/oracle/**"],
+      "check": "bash pcmkit/fast/python_lint.sh",
+      "why": "Ruff and mypy on the Python the fast tier and the end-to-end proof own."
+    },
+    {
+      "id": "pcmkit-tidy",
+      "when": ["pcmkit/cpp/**", "pcmkit/include/**"],
+      "check": "bash pcmkit/cpp/run_tidy.sh",
+      "why": "clang-tidy on the C++ consumer, with the check set the script names."
+    },
+    {
+      "id": "pcmkit-sanitizers",
+      "when": ["pcmkit/cpp/**", "pcmkit/crates/pcmkit-ffi/**"],
+      "check": "bash pcmkit/cpp/run_sanitizers.sh",
+      "why": "AddressSanitizer and UBSan on the C++ side of the ABI."
+    },
+    {
+      "id": "pcmkit-mutation",
+      "when": ["pcmkit/oracle/**"],
+      "check": "python3 pcmkit/oracle/mutation_smoke.py",
+      "why": "A one-mutant smoke: the weak property survives and the differential check does not."
+    },
+    {
+      "id": "pcmkit-e2e",
+      "when": ["pcmkit/**"],
+      "check": "python3 pcmkit/e2e/prove.py",
+      "why": "Normalize and the waveform PNG must match committed bytes, and NOT CHECKED stays explicit."
     }
   ]
 }

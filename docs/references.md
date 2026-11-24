@@ -1,6 +1,6 @@
 # References
 
-Links are to the publisher. The course text is original. Where a source was read from a search excerpt rather than the full page, the note says so. Do not treat those rows as quotations.
+Links are to the publisher. The course text is original. The Fable 5.2 announcement, "The proof passes. Of what?", ImpossibleBench, the Baker monitoring paper, and Anthropic's reward-hacking note were read in full before modules 5–8 quoted them. The course paraphrases those pages and cites them. It does not paste them.
 
 ## The article
 
@@ -52,7 +52,7 @@ These are cited now so the syllabus is not a list of brand names without a page.
 
 ## Reward hacking
 
-Read from excerpts at design time. The course uses them for the existence of the failure mode, not for a copied method.
+Read in full before modules 5–8. The course uses them for the failure mode they document. It does not copy their methods.
 
 - ImpossibleBench. [arXiv:2510.20270](https://arxiv.org/abs/2510.20270).
 - Baker and others, monitoring reasoning models for misbehavior. [arXiv:2503.11926](https://arxiv.org/abs/2503.11926).

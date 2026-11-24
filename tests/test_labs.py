@@ -153,6 +153,12 @@ class CourseFiles(unittest.TestCase):
         self.assertEqual(commands["pcmkit-cpp"], "bash pcmkit/cpp/run_consumer.sh")
         self.assertEqual(commands["harness-selftest"], "python3 -m unittest discover -s tests -v")
         self.assertEqual(commands["gain-normalize-accept"], "python3 briefs/gain-normalize/accept.py")
+        self.assertEqual(commands["pcmkit-flaky"], "python3 pcmkit/fast/flaky_scan.py pcmkit briefs")
+        self.assertEqual(commands["pcmkit-python"], "bash pcmkit/fast/python_lint.sh")
+        self.assertEqual(commands["pcmkit-tidy"], "bash pcmkit/cpp/run_tidy.sh")
+        self.assertEqual(commands["pcmkit-sanitizers"], "bash pcmkit/cpp/run_sanitizers.sh")
+        self.assertEqual(commands["pcmkit-mutation"], "python3 pcmkit/oracle/mutation_smoke.py")
+        self.assertEqual(commands["pcmkit-e2e"], "python3 pcmkit/e2e/prove.py")
 
     def test_ruleset_requires_the_ci_jobs(self) -> None:
         ruleset = json.loads((ROOT / "harness" / ".github" / "ruleset.json").read_text())

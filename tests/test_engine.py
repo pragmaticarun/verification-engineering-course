@@ -8,7 +8,14 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "harness" / ".verify"))
 
-from lib.engine import _is_commit, glob_match, parse_trailers, split_commands, strong_reason  # noqa: E402
+from lib.engine import (  # noqa: E402
+    _is_commit,
+    command_notes,
+    glob_match,
+    parse_trailers,
+    split_commands,
+    strong_reason,
+)
 
 
 class Engine(unittest.TestCase):
@@ -30,6 +37,10 @@ class Engine(unittest.TestCase):
         self.assertFalse(strong_reason("later"))
         self.assertFalse(strong_reason("too short"))
         self.assertTrue(strong_reason("Listened on headphones; the click is in the source."))
+
+    def test_command_notes_keep_e2e_lines_and_ignore_prose(self) -> None:
+        notes = command_notes("building\nE2E: pcmx matched\nNOT CHECKED: listening\nVERDICT: PASS\n")
+        self.assertEqual(notes, ["E2E: pcmx matched", "NOT CHECKED: listening"])
 
     def test_trailers_do_not_match_a_mention_in_prose(self) -> None:
         message = "Fix the clamp\n\nDo not write Verified-by: none in prose."
