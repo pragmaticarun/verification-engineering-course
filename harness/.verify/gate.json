@@ -1,0 +1,5 @@
+{
+  "mode": "enforce",
+  "max_stop_rounds": 2,
+  "platform_continuation_cap": 8
+}

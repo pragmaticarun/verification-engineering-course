@@ -1,0 +1,12 @@
+# Enforced only after a ruleset or branch protection requires code-owner review.
+# The harness copy under harness/.github/CODEOWNERS is the template for a repo
+# that uses the harness as its root.
+
+/harness/ @pragmaticarun
+/.github/ @pragmaticarun
+/docs/ @pragmaticarun
+/pcmkit/ @pragmaticarun
+/labs/ @pragmaticarun
+/briefs/ @pragmaticarun
+/scenarios/ @pragmaticarun
+/tools/ @pragmaticarun

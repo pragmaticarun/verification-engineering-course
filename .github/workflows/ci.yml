@@ -1,0 +1,41 @@
+# Job name `test` is the status-check context harness/.github/ruleset.json requires.
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: "1.83.0"
+          components: rustfmt, clippy
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry/index
+            ~/.cargo/registry/cache
+            ~/.cargo/git/db
+            target
+          key: cargo-1.83.0-${{ hashFiles('pcmkit/Cargo.lock', 'rust-toolchain.toml') }}
+          restore-keys: |
+            cargo-1.83.0-
+
+      - name: Run the harness and pcmkit
+        env:
+          CARGO_TARGET_DIR: ${{ github.workspace }}/target
+        run: make check

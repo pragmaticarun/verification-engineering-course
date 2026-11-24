@@ -1,0 +1,19 @@
+---
+description: Verification rules for coding agents working in this repository
+alwaysApply: true
+---
+
+# Verification
+
+Done is a claim: a command exited 0 on this tree.
+
+Cursor does not run Claude Code hooks. Follow the same agreement anyway, and do not treat a missing hook as permission to skip the checks.
+
+- Run `python3 .verify/verify_runner.py` before you call a task done.
+- Do not write a PASS verdict by hand.
+- Do not edit `.claude/`, `.verify/`, `CLAUDE.md`, `AGENTS.md`, `REVIEW.md`, or `.cursor/rules/`.
+- Do not modify or delete an existing test, and do not add a skip. New tests are allowed.
+- Stay inside the active brief. If a file is not on its allowed list, leave it alone.
+- CI on the protected branch is the lock. A local editor rule is only a reminder.
+
+`CLAUDE.md` is the Claude Code copy of this rule. `AGENTS.md` is the Codex copy. The done sentence is the same in all three.

@@ -1,0 +1,11 @@
+{
+  "session_id": "replace-me",
+  "transcript_path": "/tmp/verify-course-transcript.jsonl",
+  "cwd": ".",
+  "permission_mode": "default",
+  "hook_event_name": "Stop",
+  "stop_hook_active": true,
+  "last_assistant_message": "Trying again after the stop hook continued the turn.",
+  "background_tasks": [],
+  "session_crons": []
+}

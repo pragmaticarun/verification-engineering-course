@@ -1,0 +1,12 @@
+[
+  {"id": "pr01", "ticks": 6, "check_exit": 1, "human_opened": true},
+  {"id": "pr02", "ticks": 6, "check_exit": 1, "human_opened": true},
+  {"id": "pr03", "ticks": 6, "check_exit": 0, "human_opened": true},
+  {"id": "pr04", "ticks": 1, "check_exit": 0, "human_opened": false},
+  {"id": "pr05", "ticks": 0, "check_exit": 0, "human_opened": false},
+  {"id": "pr06", "ticks": 6, "check_exit": 0, "human_opened": false},
+  {"id": "pr07", "ticks": 6, "check_exit": 1, "human_opened": false},
+  {"id": "pr08", "ticks": 2, "check_exit": 1, "human_opened": true},
+  {"id": "pr09", "ticks": 6, "check_exit": 0, "human_opened": true},
+  {"id": "pr10", "ticks": 4, "check_exit": 0, "human_opened": false}
+]
