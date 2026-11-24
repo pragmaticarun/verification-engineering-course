@@ -39,20 +39,30 @@ Links are to the publisher. The course text is original. The Fable 5.2 announcem
 - Cursor rules. [Docs](https://cursor.com/docs/context/rules).
 - Cursor Bugbot. [Docs](https://cursor.com/docs/bugbot). Cloud agents. [Docs](https://cursor.com/docs/cloud-agent).
 
-## Tools the later modules will use
+## Tools
 
-These are cited now so the syllabus is not a list of brand names without a page. This milestone does not run them in CI.
+The heavy job runs Miri, cargo-mutants, cargo-fuzz, and Kani, each pinned and time-boxed. The light job runs AddressSanitizer and clang-tidy on the C++ consumer. The rest are cited so a name in a lesson has a page. They are not installed.
 
-- Property tests: [proptest](https://proptest-rs.github.io/proptest/intro.html), [Hypothesis](https://hypothesis.readthedocs.io/en/latest/).
-- Mutation: [cargo-mutants](https://mutants.rs/), [mutmut](https://mutmut.readthedocs.io/en/latest/).
-- Fuzzing: [cargo-fuzz](https://rust-fuzz.github.io/book/cargo-fuzz.html), [libFuzzer](https://llvm.org/docs/LibFuzzer.html).
+Run in the heavy job:
+
+- Mutation smoke: [cargo-mutants](https://mutants.rs/) 26.0.0, on `clamp.rs` only. [mutmut](https://mutmut.readthedocs.io/en/latest/) is not installed.
+- Fuzz smoke: [cargo-fuzz](https://rust-fuzz.github.io/book/cargo-fuzz.html) 0.13.2 and [libFuzzer](https://llvm.org/docs/LibFuzzer.html), 15 seconds, target `wav_parser`.
+- [Miri](https://github.com/rust-lang/miri) on `nightly-2026-11-23`, one test.
+- [Kani](https://model-checking.github.io/kani/) 0.68.0, one harness: every `i8` divided by 16 through `clamp_unit`. The bundle's nightly is `nightly-2026-08-21`. The crates.io crate named `kani` is not this tool.
+
+Run in the light job, on the C++ consumer. The Rust library is not instrumented:
+
+- [AddressSanitizer](https://clang.llvm.org/docs/AddressSanitizer.html) and [clang-tidy](https://clang.llvm.org/extra/clang-tidy/).
+
+Cited and not run:
+
+- Property libraries: [proptest](https://proptest-rs.github.io/proptest/intro.html), [Hypothesis](https://hypothesis.readthedocs.io/en/latest/). The course uses a fixed seed instead.
 - Snapshots and a faster runner: [insta](https://insta.rs/docs/), [cargo-nextest](https://nexte.st/).
-- Native checks: [AddressSanitizer](https://clang.llvm.org/docs/AddressSanitizer.html), [clang-tidy](https://clang.llvm.org/extra/clang-tidy/), [Miri](https://github.com/rust-lang/miri), [Kani](https://model-checking.github.io/kani/).
-- Benchmarks: [Criterion](https://bheisler.github.io/criterion.rs/book/).
+- Benchmarks: [Criterion](https://bheisler.github.io/criterion.rs/book/). The normalize tripwire is not a Criterion result.
 
 ## Reward hacking
 
-Read in full before modules 5–8. The course uses them for the failure mode they document. It does not copy their methods.
+Read in full before modules 5–9. The course uses them for the failure mode they document. It does not copy their methods.
 
 - ImpossibleBench. [arXiv:2510.20270](https://arxiv.org/abs/2510.20270).
 - Baker and others, monitoring reasoning models for misbehavior. [arXiv:2503.11926](https://arxiv.org/abs/2503.11926).

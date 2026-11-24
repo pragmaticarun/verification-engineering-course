@@ -1,0 +1,8 @@
+[
+  {"id": "a1", "body": "normalize\n", "check_exit": 0, "reviewed_hash": "MATCH", "reviewed_base": "HEAD"},
+  {"id": "a2", "body": "gain\n", "check_exit": 0, "reviewed_hash": "MATCH", "reviewed_base": "HEAD"},
+  {"id": "a3", "body": "mix\n", "check_exit": 1, "reviewed_hash": "MATCH", "reviewed_base": "HEAD"},
+  {"id": "a4", "body": "resample\n", "check_exit": 0, "reviewed_hash": "STALE", "reviewed_base": "HEAD"},
+  {"id": "a5", "body": "waveform\n", "check_exit": 0, "reviewed_hash": "MATCH", "reviewed_base": "STALE"},
+  {"id": "a6", "body": "convert\n", "check_exit": 0, "reviewed_hash": "MATCH", "reviewed_base": "HEAD"}
+]

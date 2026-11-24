@@ -1,0 +1,5 @@
+[
+  {"id": "format", "days_quiet": 90, "catastrophic": false},
+  {"id": "tamper", "days_quiet": 90, "catastrophic": true},
+  {"id": "held-out", "days_quiet": 3, "catastrophic": true}
+]

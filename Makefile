@@ -4,9 +4,9 @@
 export CARGO_TARGET_DIR ?= $(CURDIR)/target
 PYTHON ?= python3
 
-.PHONY: check fast pcmkit-test flaky python-lint tidy cpp oracle mutation e2e accept sanitizers harness site doctor
+.PHONY: check fast pcmkit-test flaky python-lint tidy cpp oracle mutation e2e accept sanitizers harness course-tools site doctor
 
-check: fast oracle mutation e2e accept sanitizers harness
+check: fast oracle mutation e2e accept sanitizers course-tools harness
 
 fast: pcmkit-test flaky python-lint tidy cpp
 
@@ -41,6 +41,13 @@ accept: pcmkit-test
 
 sanitizers:
 	bash pcmkit/cpp/run_sanitizers.sh
+
+course-tools:
+	$(PYTHON) tools/heldout/run.py
+	$(PYTHON) tools/reviewer/score.py
+	$(PYTHON) tools/orchestrator/run.py
+	$(PYTHON) tools/metrics/report.py
+	$(PYTHON) tools/capstone/before_after.py
 
 harness:
 	$(PYTHON) -m unittest discover -s tests -v

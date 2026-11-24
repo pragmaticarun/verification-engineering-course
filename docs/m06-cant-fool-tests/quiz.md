@@ -14,7 +14,7 @@ What does `mutation_smoke.py` prove, and what does it not prove?
 
 ??? success "Answer"
 
-    It proves this suite can kill this one mutant, and that a weaker property cannot. It does not produce a mutation score, and it does not run cargo-mutants or mutmut.
+    It proves this suite can kill this one hand-written mutant, and that a weaker property cannot. It does not produce a mutation score, and it does not run cargo-mutants. The heavy job runs cargo-mutants 26.0.0 on `clamp.rs` only: 9 caught, 2 equivalent misses. mutmut is still not installed.
 
 ### 3
 
@@ -30,7 +30,7 @@ The parser smoke passes. Are you fuzzing?
 
 ??? success "Answer"
 
-    You are running a fixed smoke that forbids panics on those inputs. cargo-fuzz and libFuzzer search with coverage. They are not in CI. Call the test what it is.
+    You are running a fixed smoke that forbids panics on those inputs. The heavy job also runs cargo-fuzz 0.13.2 on `wav_parser` for 15 seconds. That is a time box. The light-job test is still the fixed sequence. Call each run what it is.
 
 ### 5
 

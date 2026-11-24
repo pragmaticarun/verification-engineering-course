@@ -42,8 +42,8 @@ The normalize tripwire allows two seconds. What regression will it miss?
 
 ### 6
 
-Kani is in the diagram and not in CI. What do you write in the pull request instead?
+The diagram has both the i16 grid and a Kani harness. What do you write in the pull request?
 
 ??? success "Answer"
 
-    The name of the test that ran, `every_i16_code_stays_in_range_at_the_gain_grid`, and the inputs it covered: every i16 code at five gains, in `apply_gain_db`. You do not write that Kani proved it.
+    If you mean the grid, name `every_i16_code_stays_in_range_at_the_gain_grid`: every i16 code at five gains, in `apply_gain_db`. That test is not a Kani proof. If you mean Kani, name `clamp_unit_holds_an_i8_grid`: every i8 divided by 16, through `clamp_unit`, stays inside [-1, 1]. You do not write that one of them proved the other.

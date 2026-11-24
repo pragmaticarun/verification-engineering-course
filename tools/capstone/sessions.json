@@ -1,0 +1,10 @@
+[
+  {"id": "p1", "ticks": 6, "check_exit": 1, "human_opened": false, "cost_usd": 0.5, "minutes": 8},
+  {"id": "p2", "ticks": 8, "check_exit": 1, "human_opened": false, "cost_usd": 0.5, "minutes": 9},
+  {"id": "p3", "ticks": 7, "check_exit": 0, "human_opened": true, "cost_usd": 0.2, "minutes": 10},
+  {"id": "p4", "ticks": 4, "check_exit": 0, "human_opened": false, "cost_usd": 0.2, "minutes": 11},
+  {"id": "p5", "ticks": 9, "check_exit": 0, "human_opened": false, "cost_usd": 0.2, "minutes": 12},
+  {"id": "p6", "ticks": 6, "check_exit": 0, "human_opened": false, "cost_usd": 0.2, "minutes": 6},
+  {"id": "p7", "ticks": 8, "check_exit": 1, "human_opened": true, "cost_usd": 0.5, "minutes": 7},
+  {"id": "p8", "ticks": 2, "check_exit": 1, "human_opened": false, "cost_usd": 0.1, "minutes": 4}
+]

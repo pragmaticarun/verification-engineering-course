@@ -1,0 +1,4 @@
+[
+  {"id": "negative", "samples": [-0.4, 0.1], "peak": 0.4},
+  {"id": "both-negative", "samples": [-1.0, -0.2], "peak": 1.0}
+]

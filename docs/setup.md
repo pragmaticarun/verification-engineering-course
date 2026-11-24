@@ -22,7 +22,7 @@ That formats and clippy-checks `pcmkit`, runs its tests, runs the Python oracle,
 
 `make check` adds the oracle, the one-mutant smoke, the end-to-end golden, the sanitizer build of the consumer, the acceptance command, and the harness tests.
 
-A separate workflow, job `heavy`, runs one test under Miri on the pinned nightly `nightly-2026-11-23`. The stable toolchain in `rust-toolchain.toml` does not ship a Miri component. That job is not one of the two status checks the ruleset template names. cargo-fuzz, Kani, cargo-mutants, mutmut, insta, nextest, and Criterion are cited and not installed. The lessons say so next to the command CI actually runs.
+A separate workflow, job `heavy`, is not one of the two status checks the ruleset template names. It still fails the pull request when it fails. On `nightly-2026-11-23` it runs one Miri test (`miri_gain_of_zero_is_finite`), then `bash tools/heavy/mutants.sh` (cargo-mutants 26.0.0, file `clamp.rs`, 9 caught, 2 equivalent misses), then `bash tools/heavy/fuzz.sh` (cargo-fuzz 0.13.2, target `wav_parser`, 15 seconds), then `bash tools/heavy/kani.sh` (`kani-verifier` 0.68.0, harness `clamp_unit_holds_an_i8_grid`). The stable toolchain does not ship Miri. cargo-fuzz 0.13.2 does not build on 1.83.0. Kani's bundle installs its own nightly, `nightly-2026-08-21`. mutmut, insta, nextest, proptest, Hypothesis, and Criterion are cited and not installed.
 
 ## The site
 

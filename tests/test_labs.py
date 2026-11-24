@@ -159,6 +159,11 @@ class CourseFiles(unittest.TestCase):
         self.assertEqual(commands["pcmkit-sanitizers"], "bash pcmkit/cpp/run_sanitizers.sh")
         self.assertEqual(commands["pcmkit-mutation"], "python3 pcmkit/oracle/mutation_smoke.py")
         self.assertEqual(commands["pcmkit-e2e"], "python3 pcmkit/e2e/prove.py")
+        self.assertEqual(commands["held-out"], "python3 tools/heldout/run.py")
+        self.assertEqual(commands["reviewer"], "python3 tools/reviewer/score.py")
+        self.assertEqual(commands["orchestrator"], "python3 tools/orchestrator/run.py")
+        self.assertEqual(commands["metrics"], "python3 tools/metrics/report.py")
+        self.assertEqual(commands["capstone"], "python3 tools/capstone/before_after.py")
 
     def test_ruleset_requires_the_ci_jobs(self) -> None:
         ruleset = json.loads((ROOT / "harness" / ".github" / "ruleset.json").read_text())

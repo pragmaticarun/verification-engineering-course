@@ -60,4 +60,4 @@ The fuzz smoke has passed for weeks. A sample you recorded in the field makes `p
 
 ??? success "What do you add, and what do you not claim?"
 
-    Add the bytes, or a reduced version of them, to the smoke or to a unit test, so the panic stays dead. Do not claim the smoke was coverage-guided fuzzing. It was a fixed sequence. The field recording is a new input the sequence did not contain. cargo-fuzz would have been a search. You still do not have that search in CI.
+    Add the bytes, or a reduced version of them, to the smoke or to a unit test, so the panic stays dead on the light job. The fixed sequence was not coverage-guided. The heavy job's 15-second `wav_parser` run is a search, and it can miss the same bytes. A crash you care about belongs in a unit test either way.

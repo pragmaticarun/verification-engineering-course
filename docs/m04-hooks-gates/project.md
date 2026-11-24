@@ -19,4 +19,4 @@ About two hours. You finish with a recorded event that the current gate already 
 
 The stock corpus passes, and your note names a decision code you actually saw. Do not weaken a scenario to get a green run. The files CI executes stay as they are.
 
-You now have the first four modules: a reason to prefer an exit code, a brief that names the command, instruction files that agree, and a gate you can replay. Modules 5–12 add the layers that make the exit code hard to fake. They are marked coming soon on the [syllabus](../syllabus.md).
+You now have the first four modules: a reason to prefer an exit code, a brief that names the command, instruction files that agree, and a gate you can replay. Modules 5–12 and the capstone are on the [syllabus](../syllabus.md). They are the layers that make the exit code hard to fake, and the measurement at the end.

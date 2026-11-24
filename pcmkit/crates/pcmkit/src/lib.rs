@@ -5,6 +5,7 @@
 //! and a mix of two full-scale signals cannot exceed full scale.
 
 mod audio;
+mod clamp;
 mod error;
 mod png;
 mod wav;
@@ -15,6 +16,7 @@ mod course_checks;
 pub use audio::{
     apply_gain_db, ensure_finite, mix, normalize_peak, peak, resample_linear, rms, AudioBuffer,
 };
+pub use clamp::clamp_unit;
 pub use error::{Error, Result};
 pub use png::{render_waveform_png, write_waveform_png};
 pub use wav::{encode_wav, parse_wav, read_wav, write_wav, SampleFormat};

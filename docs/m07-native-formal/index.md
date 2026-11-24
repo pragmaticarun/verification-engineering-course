@@ -10,13 +10,25 @@ Boris Cherny described using Opus 5.5, Lean, and TLA+ on the Claude Agent SDK, a
 
 The note's example is the one to keep. A proof that a pad function returns a string of a certain length is a proof about length. The person who asked wanted text that lines up. Nobody in the prover answered that. Module 2's brief is where this course writes the requirement down before anyone reaches for Lean.
 
-Kani would be a bounded model checker for Rust assertions ([Kani](https://model-checking.github.io/kani/)). It is not installed. CI does not run it. What CI runs instead is `every_i16_code_stays_in_range_at_the_gain_grid`: every 16-bit code, at five gains, stays finite and inside `[-1, 1]` after `apply_gain_db`. That is exhaustive for those inputs. It is not a proof about every `f32`, and it is not a proof about the C ABI. Say that when you cite the test.
+Kani is a bounded model checker for Rust assertions ([Kani](https://model-checking.github.io/kani/)). The heavy job runs `kani-verifier` 0.68.0 on one harness, `clamp_unit_holds_an_i8_grid`. The input is every `i8`, divided by 16, passed through `clamp_unit`. Both asserts hold: the result is at least -1 and at most 1. That set includes values outside the rails (an `i8` of 32 is 2.0) and values on them. It is not every `f32`. It is not the i16 gain grid, and it is not the C ABI.
+
+The plugin's first run downloads Kani's bundle and installs `nightly-2026-08-21`, which is Kani's pin, not the course's 1.83.0 and not the Miri nightly. The proof package is `pcmkit/kani`, excluded from the workspace, so `cargo test --offline` does not download anything for it. The crates.io package named `kani` stops at 0.0.1 and is a different project. This course does not depend on it.
+
+The light job still runs `every_i16_code_stays_in_range_at_the_gain_grid`: every 16-bit code, at five gains, stays finite and inside `[-1, 1]` after `apply_gain_db`. That is exhaustive for those inputs. It is a test, not a Kani proof. Say which command you mean.
+
+```rust
+--8<-- "pcmkit/kani/src/lib.rs"
+```
+
+```bash
+--8<-- "tools/heavy/kani.sh"
+```
 
 ```mermaid
 flowchart LR
   req["Requirement in the brief"] --> prop["Property you can machine-check"]
   prop --> grid["Exhaustive i16 grid in cargo test"]
-  prop --> kani["Kani, not installed"]
+  prop --> kani["Kani 0.68, i8 divided by 16"]
   code["Rust function"] --> grid
   model["A Lean model of the function"] --> proof["A proof about the model"]
 ```
@@ -33,7 +45,9 @@ That is a useful smoke and a limited one. A sanitizer build of the Rust side nee
 
 Miri interprets Rust MIR and flags undefined behavior the standard test harness will not ([Miri](https://github.com/rust-lang/miri)). The 1.83.0 toolchain this course pins has no Miri component to download. The heavy workflow installs `nightly-2026-11-23` with `miri` and `rust-src`, runs `cargo miri setup`, and then runs a single test: `miri_gain_of_zero_is_finite`. That test applies 0 dB to four finite samples. It does not run the exhaustive grid under Miri, and it does not interpret the C ABI.
 
-The job is named `heavy`. It is not one of the status checks `test` and `site` in the ruleset template. It has a 15-minute limit. If it fails, the pull request fails. It is still one test on a nightly compiler, and the lesson should not inflate it.
+The same job then runs `tools/heavy/mutants.sh`, `tools/heavy/fuzz.sh`, and `tools/heavy/kani.sh`. Mutants is cargo-mutants 26.0.0 on `clamp.rs`. Fuzz is cargo-fuzz 0.13.2 on `wav_parser` for 15 seconds. Kani is the i8 harness above. The mutant and fuzz smokes are module 6's. They are in this workflow because they need a nightly toolchain and a few minutes, not because they are proofs.
+
+The job is named `heavy`. It is not one of the status checks `test` and `site` in the ruleset template. It has a 25-minute limit. If it fails, the pull request fails. Miri is still one test. The mutant run is still one file. The fuzzer still stops on a clock. The Kani harness is still one input encoding. The lesson should not inflate any of the four.
 
 ```yaml
 --8<-- ".github/workflows/heavy.yml"
@@ -47,7 +61,7 @@ The job is named `heavy`. It is not one of the status checks `test` and `site` i
 
 !!! note "Codex and Cursor"
 
-    Sanitizers and Miri are commands with toolchains. Put `bash pcmkit/cpp/run_sanitizers.sh` in `AGENTS.md` and in the Cursor rule if you want those tools to know it exists. The heavy job does not run inside either product. A model that says "Miri is clean" without the heavy job's log is narrating. The log is the result, and it covers one test.
+    Sanitizers, Miri, and Kani are commands with toolchains. Put `bash pcmkit/cpp/run_sanitizers.sh` and `bash tools/heavy/kani.sh` in `AGENTS.md` and in the Cursor rule if you want those tools to know the commands exist. The heavy job does not run inside either product. A model that says "Kani is clean" without the heavy job's log is narrating. The log is the result. The Kani portion is `clamp_unit_holds_an_i8_grid`. The Miri portion is one test. The mutant and fuzz portions are the smokes module 6 names.
 
 ## Try this
 

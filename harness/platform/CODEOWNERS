@@ -1,0 +1,7 @@
+# Template. GitHub reads CODEOWNERS from the repository root, /docs, or
+# /.github — not from this path. It also does nothing until a ruleset requires
+# code-owner review. @course-maintainers is a placeholder team, not a real one.
+
+/.verify/            @course-maintainers
+/tools/heldout/      @course-maintainers
+/pcmkit/             @course-maintainers
